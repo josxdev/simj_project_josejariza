@@ -9,6 +9,40 @@ use Illuminate\Support\Facades\Redirect;
 
 class UserController extends Controller
 {
+    public function index()
+    {
+        $viewData = ['title' => 'Listado de usuarios'];
+
+        $users = User::all()->where('id', '!=', session()->get('user')['id'])->toArray();
+        $viewData['users'] = $users;
+
+        return view('Users.index', $viewData);
+    }
+
+    public function show($id)
+    {
+        $viewData = ['title' => 'Listado de usuarios'];
+        $viewData['user'] = User::where('id', $id)->first();
+
+        return view('Users.show', $viewData);
+    }
+
+    public function logout()
+    {
+        session()->flush();
+        session()->regenerate();
+        return redirect()->route('signin');
+    }
+    public function indexAPI()
+    {
+        $users = User::all()->where('id', '!=', session()->get('user')['id'])->toArray();
+        return response()->json(['users' => $users], 200);
+    }
+    public function create()
+    {
+        $viewData = ['title' => 'Añadir usuario'];
+        return view('Users.create', $viewData);
+    }
     public function store(Request $request)
     {
         $user = $request->validate(
@@ -16,7 +50,6 @@ class UserController extends Controller
                 'name' => 'required|max:50',
                 'email' => 'required|email|unique:users,email,max:150',
                 'password' => [
-                    'min:8',
                     'confirmed',
                     'required',
                 ],
@@ -31,10 +64,69 @@ class UserController extends Controller
             ]
         );
 
-        User::create($user);
+        $user = User::create($user);
+        session()->put(['user' => $user]);
 
         return Redirect::route('desktop');
+    }
 
+    public function update($id, Request $request)
+    {
+        $user = $request->validate(
+            [
+                'name' => 'required|max:50',
+                'email' => "required|email|unique:users,email,{$id}|max:150",
+
+            ],
+            [
+                'required' => 'No puede estar vacío',
+                'email.unique' => 'Este correo ya está siendo utilizado por una cuenta',
+                'max' => 'No puede alcanzar más de :max caracteres',
+                'min' => 'Debe tener al menos :min caracteres',
+                'email' => 'Debe de ser un email válido',
+            ]
+        );
+
+        $request->has('isAdmin') && $request['isAdmin'] === 'on' ? $user['is_admin'] = true : $user['is_admin'] = false;
+
+        User::where('id', $id)->update($user);
+
+        return redirect()->back()->with('success', 'Usuario actualizado');
+    }
+
+    public function storeManually(Request $request)
+    {
+        $user = $request->validate(
+            [
+                'name' => 'required|max:50',
+                'email' => 'required|email|unique:users,email,max:150',
+                'password' => [
+                    'confirmed',
+                    'required',
+                ],
+            ],
+            [
+                'required' => 'No puede estar vacío',
+                'email.unique' => 'Este correo ya está siendo utilizado por una cuenta',
+                'max' => 'No puede alcanzar más de :max caracteres',
+                'min' => 'Debe tener al menos :min caracteres',
+                'email' => 'Debe de ser un email válido',
+                'confirmed' => 'Las contraseñas no coinciden',
+            ]
+        );
+
+        if ($request->has('isAdmin') && $request['isAdmin'] === 'on') $user['is_admin'] = true;
+        else $user['is_admin'] = false;
+
+        $user = User::create($user);
+
+        return Redirect::route('user.index');
+
+    }
+
+    public function destroy($id)
+    {
+        User::destroy($id);
     }
 
     public function auth(Request $request)

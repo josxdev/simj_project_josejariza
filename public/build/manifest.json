@@ -1,4 +1,12 @@
 {
+  "public/assets/handshake.png": {
+    "file": "assets/handshake-DX_vjSg0.png",
+    "src": "public/assets/handshake.png"
+  },
+  "public/assets/talking.png": {
+    "file": "assets/talking-CpC8loqW.png",
+    "src": "public/assets/talking.png"
+  },
   "resources/js/app.js": {
     "file": "assets/app-BLsOoRee.js",
     "name": "app",
@@ -6,7 +14,7 @@
     "isEntry": true
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-p7T-qZlj.css",
+    "file": "assets/app-D7xwfTC3.css",
     "src": "resources/sass/app.scss",
     "isEntry": true
   }

@@ -8,6 +8,7 @@
             <h2 class="titulo">¡Regístrate! Es fácil :)</h2>
             <p class="subtitulo text-center">Rellena todos los campos para poder usar nuestra plataforma</p>
 
+            <input type="checkbox" checked hidden name="redirect">
             <div class="grupo-formulario mt-5">
                 <div class="grupo-input">
                     <input value="Jose" placeholder=" " type="text" name="name" id="name">
@@ -62,6 +63,7 @@
 
 @section('image')
     <div class="imagen fondo-azul">
+        <div class="picture"> </div>
         <p class="pie-imagen">Este proyecto ha sido realizado por <span class="fw-bolder">José J Ariza Flores</span>
             para <span class="fw-bolder">Soluciones informáticas MJ</span></p>
     </div>

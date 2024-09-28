@@ -7,5 +7,9 @@ export default defineConfig({
         alias: {
             '$': 'jQuery'
         }
+    },
+    server: {
+        host: 'localhost',
+        port: 3000
     }
 });

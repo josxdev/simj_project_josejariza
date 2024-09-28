@@ -1,18 +1,7 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ $title }} - SMIJ Jose J Ariza</title>
+@extends('adminlte::page')
+
+@section('css')
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
-</head>
-<body>
-<div>
-    <h1>Soy la app</h1>
+@stop
 
-    @yield('content')
-</div>
-
-@yield('scripts')
-</body>
-</html>
+@section('title', $title . ' - SMIJ Jose J Ariza')

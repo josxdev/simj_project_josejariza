@@ -45,6 +45,8 @@
 
 @section('image')
     <div class="imagen fondo-naranja">
+        <div class="picture">
+        </div>
         <p class="pie-imagen">Este proyecto ha sido realizado por <span class="fw-bolder">José J Ariza Flores</span> para <span class="fw-bolder">Soluciones informáticas MJ</span></p>
     </div>
 @endsection
