@@ -1,0 +1,158 @@
+@import 'bootstrap/scss/bootstrap';
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+button[disabled] {
+    cursor: not-allowed;
+    filter: saturate(0);
+}
+
+.contenedor-acceso {
+
+    .error-container {
+        ul {
+            list-style: none;
+            font-size: 14px;
+        }
+    }
+    .acceso {
+        height: 70vh;
+        display: flex;
+        flex-direction: column;
+
+        .formulario {
+
+            .titulo {
+                font-weight: 700;
+                font-size: 2.5em;
+                text-align: center;
+                color: black;
+            }
+
+            .subtitulo {
+                margin-top: 1.5em;
+                font-weight: 300;
+                color: black;
+            }
+
+            .grupo-formulario {
+                .grupo-input {
+                    position: relative;
+                    border: solid 1px black;
+                    border-radius: 30px;
+                    display: flex;
+                    align-content: center;
+                    justify-content: start;
+
+                    $leftSeparation: 20px;
+
+                    &:has(input:focus),
+                    &:has(input:not(:placeholder-shown)) {
+                        border: solid 1px #2192FF;
+                    }
+
+                    &.error {
+                        border: solid 1px red !important;
+                    }
+
+                    input {
+                        width: 100%;
+                        padding: 15px $leftSeparation;
+                        background: none;
+                        border: none;
+
+                        letter-spacing: 1px;
+
+                        &, &:focus {
+                            outline: none;
+
+                        }
+
+                        &:focus ~ label,
+                        &:not(:placeholder-shown) ~ label, {
+                            top: 0;
+                            opacity: 1;
+                            background: white;
+
+                            padding: 0 5px;
+                            font-size: 0.8em;
+                        }
+                    }
+
+
+                    label {
+                        position: absolute;
+                        top: 50%;
+                        left: $leftSeparation;
+                        transform: translateY(-50%);
+                        opacity: 0.7;
+
+                        transition: 0.2s;
+
+                    }
+                }
+            }
+
+            .enlace {
+                display: block;
+                width: 100%;
+                text-align: end;
+                font-weight: 500;
+                font-size: 0.8em;
+                text-decoration: none;
+                color: black;
+            }
+
+            button {
+                margin-top: 2.5em;
+                width: 100%;
+                color: white;
+                background: #F94C10;
+                border: none;
+                border-radius: 30px;
+                padding: 15px 20px;
+                transition: 0.2s;
+
+                &:hover {
+                    background: black;
+                }
+            }
+        }
+
+        .cambiar-formulario {
+            .enlace {
+                color: #F94C10;
+                text-decoration: none;
+            }
+        }
+    }
+
+    .imagen {
+        height: 100%;
+        border-radius: 20px;
+        padding: 5%;
+
+        display: flex;
+
+        &.fondo-naranja {
+            background: #ffeadb;
+        }
+
+        &.fondo-azul {
+            background: #dbe2ff;
+        }
+
+        .pie-imagen {
+            font-size: 1.3em;
+            font-weight: 400;
+            text-align: center;
+            margin-top: auto;
+        }
+
+    }
+}
+
