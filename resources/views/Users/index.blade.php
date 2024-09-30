@@ -6,6 +6,10 @@
 
 @section('content')
     <div>
+        @can('manage-users')
+            <p>El usuario tiene acceso para gestionar usuarios.</p>
+        @endcan
+
         <p>Gestiona a los usuarios de la aplicación. Estos podrán acceder a la aplicación con la información que le
             hayas facilitado. Más adelante, una vez dentro, podrán cambiar la información asignada.</p>
         <div class="card mt-5">

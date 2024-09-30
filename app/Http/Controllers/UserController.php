@@ -35,7 +35,7 @@ class UserController extends Controller
     }
     public function indexAPI()
     {
-        $users = User::all()->where('id', '!=', session()->get('user')['id'])->toArray();
+        $users = User::all()->toArray();
         return response()->json(['users' => $users], 200);
     }
     public function create()

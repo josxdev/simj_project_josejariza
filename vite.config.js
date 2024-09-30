@@ -5,7 +5,7 @@ export default defineConfig({
     plugins: [laravel(['resources/sass/app.scss', 'resources/js/app.js']),],
     resolve: {
         alias: {
-            '$': 'jQuery'
+            '$': 'jQuery',
         }
     },
     server: {

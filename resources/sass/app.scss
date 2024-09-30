@@ -1,6 +1,7 @@
 @import 'bootstrap/scss/bootstrap';
+@import 'jquery-ui/themes/base/all.css';
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
+@import "simplebar/dist/simplebar.css";
 
 .contenedor-acceso {
     * {
@@ -11,12 +12,14 @@
         cursor: not-allowed;
         filter: saturate(0);
     }
+
     .error-container {
         ul {
             list-style: none;
             font-size: 14px;
         }
     }
+
     .acceso {
         height: 70vh;
         display: flex;
@@ -147,6 +150,7 @@
 
         &.fondo-naranja {
             background: #ffeadb;
+
             .picture {
                 background-image: url("/public/assets/handshake.png");
             }
@@ -154,6 +158,7 @@
 
         &.fondo-azul {
             background: #dbe2ff;
+
             .picture {
                 background-image: url("/public/assets/talking.png");
 
@@ -168,5 +173,34 @@
         }
 
     }
+}
+
+#calendar {
+    width: 100%;
+}
+
+.table {
+    table-layout: fixed;
+}
+
+.task-slot {
+    position: relative;
+    padding: 0;
+    height: 50px;
+}
+
+.task {
+    position: absolute;
+    left: 0;
+    right: 0;
+    background-color: rgba(#FF8F00, 0.2);
+    border: solid 1px #FF8F00;
+    z-index: 99;
+    color: #FF8F00;
+    border-radius: 4px;
+    padding: 5px;
+    box-sizing: border-box;
+    transition: height 0.2s;
+    overflow: hidden
 }
 

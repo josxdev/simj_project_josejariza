@@ -1,4 +1,28 @@
 {
+  "node_modules/jquery-ui/themes/base/images/ui-icons_444444_256x240.png": {
+    "file": "assets/ui-icons_444444_256x240-66Lx08wv.png",
+    "src": "node_modules/jquery-ui/themes/base/images/ui-icons_444444_256x240.png"
+  },
+  "node_modules/jquery-ui/themes/base/images/ui-icons_555555_256x240.png": {
+    "file": "assets/ui-icons_555555_256x240-DWo_cwHo.png",
+    "src": "node_modules/jquery-ui/themes/base/images/ui-icons_555555_256x240.png"
+  },
+  "node_modules/jquery-ui/themes/base/images/ui-icons_777620_256x240.png": {
+    "file": "assets/ui-icons_777620_256x240-DfhJ1yna.png",
+    "src": "node_modules/jquery-ui/themes/base/images/ui-icons_777620_256x240.png"
+  },
+  "node_modules/jquery-ui/themes/base/images/ui-icons_777777_256x240.png": {
+    "file": "assets/ui-icons_777777_256x240-Buv9k6Yo.png",
+    "src": "node_modules/jquery-ui/themes/base/images/ui-icons_777777_256x240.png"
+  },
+  "node_modules/jquery-ui/themes/base/images/ui-icons_cc0000_256x240.png": {
+    "file": "assets/ui-icons_cc0000_256x240-BXUJj0NM.png",
+    "src": "node_modules/jquery-ui/themes/base/images/ui-icons_cc0000_256x240.png"
+  },
+  "node_modules/jquery-ui/themes/base/images/ui-icons_ffffff_256x240.png": {
+    "file": "assets/ui-icons_ffffff_256x240-C2lg5490.png",
+    "src": "node_modules/jquery-ui/themes/base/images/ui-icons_ffffff_256x240.png"
+  },
   "public/assets/handshake.png": {
     "file": "assets/handshake-DX_vjSg0.png",
     "src": "public/assets/handshake.png"
@@ -8,13 +32,13 @@
     "src": "public/assets/talking.png"
   },
   "resources/js/app.js": {
-    "file": "assets/app-BLsOoRee.js",
+    "file": "assets/app-B2JB0OaA.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-D7xwfTC3.css",
+    "file": "assets/app-CfyUr0BU.css",
     "src": "resources/sass/app.scss",
     "isEntry": true
   }

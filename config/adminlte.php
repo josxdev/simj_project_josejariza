@@ -294,11 +294,7 @@ return [
     */
 
     'menu' => [
-//        [
-//            'text' => 'Proyectos',
-//            'url' => 'projects',
-//            'can' => 'manage-blog',
-//        ],
+
         [
             'text' => 'Usuarios',
             'url' => 'users',
