@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class Auth
 {
     /**
-     * Handle an incoming request.
+     * Controlar accesibilidad a recursos. Solo permite si tiene sesión iniciada.
      *
      * @param \Illuminate\Http\Request $request
      * @param \Closure $next
@@ -16,9 +16,10 @@ class Auth
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!session()->has('user')) {
+        // Si no tiene sesión, te redirige
+        if (!session()->has('user'))
             return redirect(route('signin'));
-        }
+
 
         return $next($request);
     }

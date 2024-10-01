@@ -38,14 +38,15 @@
                             <td>{{ $user['email'] }}</td>
                             <td>{{ $user['is_admin'] ? 'Sí' : 'No' }}</td>
                             <td class="d-flex justify-content-end">
-                                <a href="{{ route('user.show', ['id' => $user['id']]) }}" class="editUser btn btn-sm btn-light"><i class="fas fa-pen"></i></a>
+                                <a href="{{ route('user.show', ['id' => $user['id']]) }}"
+                                   class="editUser btn btn-sm btn-light"><i class="fas fa-pen"></i></a>
                                 <button class="deleteUser btn btn-sm btn-light"><i class="fas fa-trash"></i></button>
                             </td>
                         </tr>
                     @endforeach
                     @if(count($users) === 0)
                         <tr>
-                            <td colspan="5" class="text-center py-4">¡Aún no hay más usuarios en la aplicación!</td>
+                            <td colspan="5" class="text-center py-4">¡Aún no hay usuarios en la aplicación!</td>
                         </tr>
                     @endif
                     </tbody>
@@ -72,10 +73,11 @@
 
         $(() => {
             $('.deleteUser').click(destroyUser);
-
         })
 
-
+        /**
+         * Envío información al backend para eliminar un usario después de una ventana de confirmación.
+         */
         function destroyUser() {
             let index = $(this).closest('tr').data('index');
             const user = users[index];
@@ -83,19 +85,18 @@
             Swal.fire({
                 title: '¿Estás seguro?',
                 icon: 'warning',
-                html: `Estás a punto de eliminar a <b>"${ user.name }"</b> y esta acción no tiene retorno. ¿Estás seguro de ello?`,
+                html: `Estás a punto de eliminar a <b>"${user.name}"</b>. Todas las tareas y proyectos  relacionados con esta persona también se verán afectados y esta acción no tiene retorno. ¿Estás seguro de ello?`,
                 showConfirmButton: true,
                 showCancelButton: true,
                 confirmButtonText: 'Sí, lo estoy',
                 cancelButtonText: 'Mejor no'
             }).then((result) => {
-                if(result.isConfirmed) {
+                if (result.isConfirmed) {
                     axios.delete(`/api/user/${user.id}`).then(() => {
                         location.reload();
                     })
                 }
             })
         }
-
     </script>
 @stop

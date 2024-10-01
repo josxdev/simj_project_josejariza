@@ -82,12 +82,18 @@
             })
         })
 
+        /**
+         * Registro de usuario
+         * @param e
+         */
         function registerUser(e) {
             e.preventDefault();
 
+            // Gestión del estado del botón de cargando
             const buttonText = $(this).text();
             $(this).text('Cargando...').prop('disabled', true)
 
+            // Comprobación previa de errores en el formulario
             if (!checkHaveErrors()) {
                 $('#signup').submit();
 
@@ -98,11 +104,14 @@
                     text: 'Parece que hay algo que no está bien en el formulario. Revísalo de nuevo.'
                 })
             }
+
             $(this).text(buttonText).prop('disabled', false)
-
-
         }
 
+        /**
+         * Detectar errores en el formulario. Devuelve si hay errores o no
+         * @returns {boolean}
+         */
         function checkHaveErrors() {
             $('.grupo-input.error').removeClass('error');
             let hasError = false;
@@ -129,7 +138,6 @@
                 hasError = true;
             }
 
-
             let inputPasswordConfirm = $('[name="password_confirmation"]');
             let inputPasswordConfirmVal = inputPasswordConfirm.val();
             if (!inputPasswordConfirmVal.trim()) {
@@ -143,8 +151,6 @@
             }
 
             return hasError;
-
-
         }
     </script>
 @endsection

@@ -8,18 +8,20 @@ use Illuminate\Http\Request;
 class ProjectController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Listado de proyectos (vista)
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
      */
     public function index()
     {
         $viewData = ['title' => 'Proyectos'];
 
-
-//        $viewData['users'] = $users;
-
         return view('Projects.index', $viewData);
     }
 
+    /**
+     * Obtener el listado de proyectos mediante API
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function indexAPI()
     {
         $projects = Project::select('projects.*', 'users.name as creator_name')
@@ -29,15 +31,11 @@ class ProjectController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
+     * Guardado del proyecto en la base de datos según parámetros del request
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
      */
     public function store(Request $request)
     {
@@ -53,43 +51,12 @@ class ProjectController extends Controller
             ]
         );
 
+        // Creación del proyecto
         Project::create([
             'title' => $data['title'],
             'owner_user_id' => session()->get('user')['id']
         ]);
 
         return response()->json('Proyecto creado', 200);
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Project $project)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Project $project)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Project $project)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Project $project)
-    {
-        //
     }
 }

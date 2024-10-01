@@ -60,6 +60,10 @@
             })
         })
 
+        /**
+         * Envío información al backend para editar un usario.
+         * @param e
+         */
         function updateUser(e) {
             e.preventDefault();
 
@@ -81,6 +85,10 @@
 
         }
 
+        /**
+         * Comprobación de errores
+         * @returns {boolean}
+         */
         function checkHaveErrors() {
             $('.grupo-input.error').removeClass('error');
             let hasError = false;
@@ -92,7 +100,6 @@
                 hasError = true;
             }
 
-
             let inputEmail = $('[name="email"]');
             let inputEmailVal = inputEmail.val();
             if (!inputEmailVal.trim()) {
@@ -101,8 +108,6 @@
             }
 
             return hasError;
-
-
         }
     </script>
 @stop

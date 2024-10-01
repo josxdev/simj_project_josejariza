@@ -307,11 +307,6 @@ return [
         ],
         ['header' => 'Mi cuenta'],
         [
-            'text' => 'Mis datos',
-            'url' => 'profile',
-            'icon' => 'fas fa-fw fa-user',
-        ],
-        [
             'text' => 'Cerrar sesión',
             'url' => '/logout',
             'id' => 'logout',

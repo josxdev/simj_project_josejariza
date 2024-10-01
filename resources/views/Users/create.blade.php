@@ -60,12 +60,17 @@
             })
         })
 
+        /**
+         * Envío de datos para registrar usuario
+         * @param e
+         */
         function registerUser(e) {
             e.preventDefault();
 
             const buttonText = $(this).text();
             $(this).text('Cargando...').prop('disabled', true)
 
+            // Comprobación de errores previa
             if (!checkHaveErrors()) {
                 $('#signup').submit();
 
@@ -81,6 +86,10 @@
 
         }
 
+        /**
+         * Detectar errores en el formulario. Devuelve si hay errores o no
+         * @returns {boolean}
+         */
         function checkHaveErrors() {
             $('.grupo-input.error').removeClass('error');
             let hasError = false;

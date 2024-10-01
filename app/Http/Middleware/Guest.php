@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 class Guest
 {
     /**
-     * Handle an incoming request.
+     * Controlar accesibilidad a recursos. Solo permite si NO tiene sesión iniciada.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
@@ -19,9 +19,9 @@ class Guest
      */
     public function handle(Request $request, Closure $next, ...$guards)
     {
-        if (session()->has('user')) {
-            return redirect(route('desktop'));
-        }
+        // Si la tiene, lo redirige
+        if (session()->has('user')) return redirect(route('projects.index'));
+
         return $next($request);
     }
 }

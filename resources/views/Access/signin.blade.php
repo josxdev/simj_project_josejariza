@@ -62,12 +62,18 @@
             })
         })
 
+        /**
+         * Verificación de usuario
+         * @param e
+         */
         function authUser(e) {
             e.preventDefault();
 
+            // Gestión botón mientras carga
             const buttonText = $(this).text();
             $(this).text('Cargando...').prop('disabled', true)
 
+            // Comprobación de errores
             if (!checkHaveErrors()) {
                 let user = {
                     email: $('[name="email"]').val(),
@@ -83,11 +89,14 @@
                     text: 'Parece que hay algo que no está bien en el formulario. Revísalo de nuevo.'
                 })
             }
+
             $(this).text(buttonText).prop('disabled', false)
-
-
         }
 
+        /**
+         * Detectar errores en el formulario. Devuelve si hay errores o no
+         * @returns {boolean}
+         */
         function checkHaveErrors() {
             $('.grupo-input.error').removeClass('error');
             let hasError = false;
@@ -106,7 +115,6 @@
                 inputPassword.closest('.grupo-input').addClass('error');
                 hasError = true;
             }
-
 
             return hasError;
         }

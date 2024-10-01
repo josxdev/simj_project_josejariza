@@ -6,9 +6,16 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
+use PhpParser\Node\Scalar\String_;
 
 class UserController extends Controller
 {
+    /**
+     * Listado de usuarios (vista)
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
+     */
     public function index()
     {
         $viewData = ['title' => 'Listado de usuarios'];
@@ -19,6 +26,11 @@ class UserController extends Controller
         return view('Users.index', $viewData);
     }
 
+    /**
+     * Obtener información de un usuario mediante ID especificada en URL
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
+     */
     public function show($id)
     {
         $viewData = ['title' => 'Listado de usuarios'];
@@ -27,22 +39,42 @@ class UserController extends Controller
         return view('Users.show', $viewData);
     }
 
+    /**
+     * Cierre de sesión
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function logout()
     {
         session()->flush();
         session()->regenerate();
         return redirect()->route('signin');
     }
+
+    /**
+     * Obtención del listado de usuarios mediante API
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function indexAPI()
     {
         $users = User::all()->toArray();
         return response()->json(['users' => $users], 200);
     }
+
+    /**
+     * Formulario de creación de usuarios
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
+     */
     public function create()
     {
         $viewData = ['title' => 'Añadir usuario'];
         return view('Users.create', $viewData);
     }
+
+    /**
+     * Creación de un usuario validando información
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(Request $request)
     {
         $user = $request->validate(
@@ -67,9 +99,15 @@ class UserController extends Controller
         $user = User::create($user);
         session()->put(['user' => $user]);
 
-        return Redirect::route('desktop');
+        return Redirect::route('projects.index');
     }
 
+    /**
+     * Función para actualizar los datos de un usuario
+     * @param $id
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function update($id, Request $request)
     {
         $user = $request->validate(
@@ -94,6 +132,11 @@ class UserController extends Controller
         return redirect()->back()->with('success', 'Usuario actualizado');
     }
 
+    /**
+     * Creación de un usuario (no registro)
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function storeManually(Request $request)
     {
         $user = $request->validate(
@@ -124,11 +167,21 @@ class UserController extends Controller
 
     }
 
+    /**
+     * Eliminar un usuario
+     * @param $id
+     * @return void
+     */
     public function destroy($id)
     {
         User::destroy($id);
     }
 
+    /**
+     * Verificación y autentificación de un usuario
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function auth(Request $request)
     {
         $credentials = $request->validate(
@@ -146,7 +199,7 @@ class UserController extends Controller
 
         if ($user && Hash::check($credentials['password'], $user->password)) {
             session()->put(['user' => $user]);
-            return Redirect::route('desktop');
+            return Redirect::route('projects.index');
         }
 
         return back()->withErrors([
